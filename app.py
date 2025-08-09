@@ -5,22 +5,21 @@ from dotenv import load_dotenv
 import os
 import smtplib
 
-# ------------------ Load Environment Variables ------------------
 load_dotenv()
 
 SECRET_KEY = os.getenv("SECRET_KEY")
-DB_URI = os.getenv("SQLALCHEMY_DATABASE_URI")  # e.g., sqlite:///instance/database.db
+DB_URI = os.getenv("SQLALCHEMY_DATABASE_URI")  
 EMAIL_USER = os.getenv("EMAIL_USER")
 EMAIL_PASS = os.getenv("EMAIL_PASS")
 
-# Extract SQLite path from SQLAlchemy URI (for sqlite3 library)
+
 if DB_URI.startswith("sqlite:///"):
     DB_PATH = DB_URI.replace("sqlite:///", "")
 else:
     st.error("❌ Only SQLite DB is supported in this version.")
     st.stop()
 
-# ------------------ Database Functions ------------------
+
 def init_db():
     conn = sqlite3.connect(DB_PATH)
     c = conn.cursor()
@@ -57,7 +56,6 @@ def search_donors(city="", blood_type=""):
     conn.close()
     return df
 
-# ------------------ Email Function ------------------
 def send_email(to_email, subject, message):
     try:
         server = smtplib.SMTP('smtp.gmail.com', 587)
@@ -70,14 +68,13 @@ def send_email(to_email, subject, message):
     except Exception as e:
         st.error(f"Email error: {e}")
 
-# ------------------ Initialize DB ------------------
 init_db()
 
-# ------------------ Streamlit UI ------------------
+
 st.set_page_config(page_title="AI Blood Bank", page_icon="🩸", layout="wide")
 menu = st.sidebar.radio("📍 Navigation", ["Register as Donor", "Search Donors"])
 
-# ---- Global Big Title ----
+
 st.markdown(
     """
     <h1 style='text-align: center; font-size: 50px; color: #d62828; margin-bottom: 0;'>
@@ -87,7 +84,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# Page-specific subheadings
+
 if menu == "Register as Donor":
     st.markdown(
         """
@@ -108,7 +105,7 @@ elif menu == "Search Donors":
         """,
         unsafe_allow_html=True
     )
-# --- Register Donor Page ---
+
 if menu == "Register as Donor":
     with st.form("register_form"):
           name = st.text_input("Full Name")
@@ -125,7 +122,7 @@ if menu == "Register as Donor":
         else:
             st.error("⚠️ Please fill all required fields.")
 
-# --- Search Donors Page ---
+
 elif menu == "Search Donors":
     st.markdown('<p class="big-title">🔍 Search for Blood Donors</p>', unsafe_allow_html=True)
     col1, col2 = st.columns(2)
@@ -148,3 +145,4 @@ elif menu == "Search Donors":
                         send_email(donor['email'], subject, message)
         else:
             st.warning("No donors found matching your criteria.")
+
