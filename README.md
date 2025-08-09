@@ -1,9 +1,15 @@
-## 🩸 AI Blood Bank
+# 🩸 AI Blood Bank
+
 ### A Smart Platform to Connect Blood Donors with People in Need
 
 AI Blood Bank is a cloud-ready, Python-based application built using Streamlit and SQLite.
 It allows donor registration, real-time search by city & blood type, and automated email alerts to matching donors — helping save lives faster.
 ---
+
+<p align="center">
+  <img src="blood.jpg" width="450" alt="AI Blood Management System Logo" />
+</p>
+
 
 ##  Features
 - **Register as a Donor** – Securely store donor details in a database.
@@ -15,7 +21,7 @@ It allows donor registration, real-time search by city & blood type, and automat
 
 ---
 
-## 🛠 Tech Stack
+##  Tech Stack
 - **Frontend & Backend:** Streamlit
 - **Database:** SQLite
 - **Email Service:** Gmail SMTP with App Password
