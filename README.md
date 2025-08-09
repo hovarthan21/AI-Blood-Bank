@@ -10,6 +10,10 @@ It allows donor registration, real-time search by city & blood type, and automat
   <img src="blood.jpg" width="450" alt="AI Blood Management System Logo" />
 </p>
 
+## Video
+
+[▶ AI Blood Bank](https://drive.google.com/file/d/10EzoKsvOcUnVbKh4_xUgTNsmn81ZNhCd/view?usp=sharing)
+
 
 ##  Features
 - **Register as a Donor** – Securely store donor details in a database.
